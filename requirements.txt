@@ -1,3 +1,3 @@
-# streamlit
-# -f mixs
-# spleeter
+./mixs
+streamlit==0.72.0
+./spleeter

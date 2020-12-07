@@ -1,16 +1,14 @@
 from setuptools import find_packages
 from setuptools import setup
 
-REQUIRED_PACKAGES = [
-    # 'streamlit==0.72.0',
-    # 'spleeter==2.0.1'
-    ]
+with open('requirements.txt') as f:
+    content = f.readlines()
+requirements = [x.strip() for x in content if 'git+' not in x]
 
 setup(
     name='StreamlitApp',
     version='1.0',
-    install_requires=REQUIRED_PACKAGES,
-    packages=find_packages(include=['mixs']),
+    packages=find_packages(),
     include_package_data=True,
     description='Streamlit App'
     )
