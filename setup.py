@@ -2,8 +2,9 @@ from setuptools import find_packages
 from setuptools import setup
 
 REQUIRED_PACKAGES = [
-    'streamlit==0.72.0',
-    'spleeter==2.0.1']
+    # 'streamlit==0.72.0',
+    # 'spleeter==2.0.1'
+    ]
 
 setup(
     name='StreamlitApp',
