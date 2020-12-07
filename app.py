@@ -42,20 +42,23 @@ if button:
     link = YouTubeTools(youtube_link)
     youtube_display(youtube_link)
     filename = link.get_audio_and_directory()
-    stems = splitter(filename)
+    stems, rate = splitter(filename)
+    rate = int(rate)
 
     if stems != None:
         st.markdown("<h3 style='text-align: left; color: white; font-family: Monaco'>Vocals</h3>",unsafe_allow_html=True)
-        np_audio(stems['vocals'])
+        np_audio(stems['vocals'], samplerate = rate)
 
         st.markdown("<h3 style='text-align: left; color: white; font-family: Monaco'>Piano</h3>",unsafe_allow_html=True)
-        np_audio(stems['piano'])
+        np_audio(stems['piano'], samplerate = rate)
 
         st.markdown("<h3 style='text-align: left; color: white; font-family: Monaco'>Drums</h3>",unsafe_allow_html=True)
-        np_audio(stems['drums'])
+        np_audio(stems['drums'], samplerate = rate)
 
         st.markdown("<h3 style='text-align: left; color: white; font-family: Monaco'>Bass</h3>",unsafe_allow_html=True)
-        np_audio(stems['bass'])
+        np_audio(stems['bass'], samplerate = rate)
 
         st.markdown("<h3 style='text-align: left; color: white; font-family: Monaco'>Other</h3>",unsafe_allow_html=True)
-        np_audio(stems['other'])
+        np_audio(stems['other'], samplerate = rate)
+
+        link.clear_wavs()
