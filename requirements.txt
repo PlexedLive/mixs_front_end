@@ -1,4 +1,5 @@
-./mixs
 streamlit==0.72.0
 ./spleeter
+librosa
 soundfile
+./mixs
