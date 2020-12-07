@@ -57,10 +57,10 @@ def app():
     # st.markdown("<h2 style='text-align: center; color: white; font-family: Verdana'>Get high quality backing tracks!</h2>",unsafe_allow_html=True)
     # Fetching YouTube link from the end-user
     col3, col4 = st.beta_columns([10,1])
-    explanation = col3.markdown("<h4 style='text-align: left; color: white; font-family: Ariel'>Enter the URL of the track to be separated</h4>",unsafe_allow_html=True)
+    explanation = st.markdown("<h4 style='text-align: left; color: white; font-family: Ariel'>Enter the URL of the track to be separated</h4>",unsafe_allow_html=True)
 
-    youtube_link = col3.text_input("")
-    button = col4.button("Upload")
+    youtube_link = st.text_input("")
+    # button = col4.button("Upload")
 
 
 
@@ -80,6 +80,9 @@ def app():
                 'src': wav_url,
                 'name': stem_name
                 })
+
+            button = st.button("Proceed with Separation?")
+
 
     if button:
         link = YouTubeTools(youtube_link)
@@ -161,10 +164,11 @@ playlist
 </script>
 <script type="text/javascript" src="http://naomiaro.github.io/waveform-playlist/js/emitter.js"></script>
 
-
 </script>
 
-                ''', height=1000)
+''', height=1000)
 
+        else:
+            youtube_display(youtube_link)
 
 
