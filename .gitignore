@@ -13,7 +13,7 @@ groupama/data/base_pno.*
 *.mp4
 /raw_data/
 *.wav
-/notebooks/test_files/
+/notebooks/
 
 
 # Byte-compiled / optimized / DLL files
