@@ -2,7 +2,6 @@ import streamlit as st
 import os
 import json
 import soundfile
-import matplotlib.pyplot as plt
 from scipy.io.wavfile import write
 from mixs.youtube import YouTubeTools
 from mixs.split import splitter
@@ -10,29 +9,6 @@ import streamlit.components.v1 as components
 from streamlit.media_file_manager import _calculate_file_id, STATIC_MEDIA_ENDPOINT
 
 stem_urls = []
-
-# def display_waveform(song, instrument):
-#     colours = {
-#     'vocals': '#069692',
-#     'piano': '#4a9683',
-#     'drums': '#014209',
-#     'bass': '#4e5251',
-#     'other': '#000000'
-#     }
-
-#     fig = plt.figure(figsize=(12,0.75))
-#     ax = plt.subplot()
-#     plt.plot(song, c='#e8e2e1');
-#     ax.spines['left'].set_visible(False)
-#     ax.spines['top'].set_visible(False)
-#     ax.spines['bottom'].set_visible(False)
-#     ax.spines['right'].set_visible(False)
-#     ax.xaxis.set_visible(False)
-#     ax.yaxis.set_visible(False)
-#     ax.set_facecolor(colours[instrument])
-#     fig.patch.set_facecolor(colours[instrument])
-
-#     return fig
 
 # Change background image
 def app():
