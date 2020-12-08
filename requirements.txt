@@ -3,4 +3,4 @@ streamlit==0.72.0
 soundfile
 youtube-dl
 ./mixs
-tensorflow-cpu
+tensorflow-cpu==2.3.0
