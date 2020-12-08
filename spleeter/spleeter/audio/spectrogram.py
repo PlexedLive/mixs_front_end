@@ -5,7 +5,7 @@
 
 # pylint: disable=import-error
 import numpy as np
-import tensorflow-cpu as tf
+import tensorflow as tf
 
 from tensorflow.signal import stft, hann_window
 # pylint: enable=import-error

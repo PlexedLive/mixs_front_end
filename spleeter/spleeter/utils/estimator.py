@@ -3,7 +3,7 @@
 
 """ Utility functions for creating estimator. """
 
-import tensorflow-cpu as tf  # pylint: disable=import-error
+import tensorflow as tf  # pylint: disable=import-error
 
 from ..model import model_fn
 from ..model.provider import get_default_model_provider

@@ -22,7 +22,7 @@ from time import time
 from typing import Container, NoReturn
 
 import numpy as np
-import tensorflow-cpu as tf
+import tensorflow as tf
 
 from librosa.core import stft, istft
 from scipy.signal.windows import hann

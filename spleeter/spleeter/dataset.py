@@ -21,7 +21,7 @@ from os.path import exists, join, sep as SEPARATOR
 # pylint: disable=import-error
 import pandas as pd
 import numpy as np
-import tensorflow-cpu as tf
+import tensorflow as tf
 # pylint: enable=import-error
 
 from .audio.convertor import (

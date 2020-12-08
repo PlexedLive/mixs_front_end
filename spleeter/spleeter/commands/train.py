@@ -10,7 +10,7 @@
 from functools import partial
 
 # pylint: disable=import-error
-import tensorflow-cpu as tf
+import tensorflow as tf
 # pylint: enable=import-error
 
 from ..audio.adapter import get_audio_adapter

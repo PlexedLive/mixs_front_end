@@ -4,7 +4,7 @@
 """ Utility function for tensorflow. """
 
 # pylint: disable=import-error
-import tensorflow-cpu as tf
+import tensorflow as tf
 import pandas as pd
 # pylint: enable=import-error
 
