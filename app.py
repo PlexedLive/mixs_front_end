@@ -9,7 +9,7 @@ from mixs.split import splitter
 import streamlit.components.v1 as components
 from streamlit.media_file_manager import _calculate_file_id, STATIC_MEDIA_ENDPOINT
 
-stem_urls = []
+# stem_urls = []
 
 # def display_waveform(song, instrument):
 #     colours = {
@@ -85,6 +85,7 @@ def app():
 
 
     if youtube_link != "":
+        stem_urls = []
         link = YouTubeTools(youtube_link)
         button = st.button("Separate")
 
