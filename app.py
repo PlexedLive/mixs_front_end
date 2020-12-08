@@ -1,4 +1,5 @@
 import streamlit as st
+import requests
 import os
 import json
 import soundfile
@@ -39,8 +40,9 @@ stem_urls = []
 
 st.set_page_config(page_title='MixS', page_icon=None, layout='wide', initial_sidebar_state='auto')
 
-stylesheet = '<link rel="stylesheet" href="styles/app.css">'
-st.markdown(stylesheet, unsafe_allow_html=True)
+# Loading stylesheets from Github
+app_stylesheet = requests.get("https://raw.githubusercontent.com/PlexedLive/mixs_front_end/ui_improvements/styles/app.css").content.decode('utf-8')
+st.markdown(f"<style>{app_stylesheet}</style>", unsafe_allow_html=True)
 
 # Markdown texts for heading
 col1, col2 = st.beta_columns(2)
@@ -108,6 +110,7 @@ if youtube_link != "":
                 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
 <link rel="stylesheet" href="http://naomiaro.github.io/waveform-playlist/css/main.css">
+<link rel="stylesheet" href="https://raw.githubusercontent.com/PlexedLive/mixs_front_end/ui_improvements/styles/mixer.css">
   <div id="top-bar" class="playlist-top-bar">
 <div class="playlist-toolbar">
     <div class="btn-group">
