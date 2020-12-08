@@ -1,0 +1,24 @@
+body {
+  background-color: black;
+  background-size: cover;
+  color: #377ba2;
+  text-align: center;
+}
+
+.main {
+  padding: 0 3em;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1 { font-family: Marker Felt }
+
+audio { display: none; }
+
+.streamlit-button, label {
+  color: white !important;
+}
+
+.streamlit-button.primary-button {
+  background-color: #377ba2;
+}
