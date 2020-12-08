@@ -1,5 +1,5 @@
-from spleeter.spleeter.separator import Separator
-from spleeter.spleeter.audio.adapter import  get_default_audio_adapter
+from spleeter.separator import Separator
+from spleeter.audio.adapter import  get_default_audio_adapter
 # from .youtube import YouTubeTools
 
 # tools = YouTubeTools("123")

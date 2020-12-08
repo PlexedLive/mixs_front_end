@@ -1,5 +1,5 @@
 streamlit==0.72.0
-./spleeter
+./spleeter/spleeter
 soundfile
 youtube-dl
 ./mixs
