@@ -16,7 +16,7 @@ from tempfile import TemporaryDirectory
 import pytest
 import numpy as np
 
-import tensorflow-cpu as tf
+import tensorflow as tf
 
 from spleeter.audio.adapter import get_default_audio_adapter
 from spleeter.commands import create_argument_parser

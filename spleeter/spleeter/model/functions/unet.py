@@ -13,7 +13,7 @@ estimated sound spectrogram as output.
 from functools import partial
 
 # pylint: disable=import-error
-import tensorflow-cpu as tf
+import tensorflow as tf
 
 from tensorflow.keras.layers import (
     BatchNormalization,
