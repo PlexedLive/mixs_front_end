@@ -53,7 +53,7 @@ col2.markdown("## Practice like a Pro!")
 # Fetching YouTube link from the end-user
 col3, col4 = st.beta_columns([10,1])
 
-youtube_link = st.text_input("Enter the YouTube link of the track to be separated")
+youtube_link = st.text_input("Enter the YouTube link of the track to be separated", "https://www.youtube.com/watch?v=d8dTrOamm8k")
 
 
 # Fetching the song from YouTube
