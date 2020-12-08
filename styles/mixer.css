@@ -33,21 +33,17 @@ body {
   background-color: #a5be64;
 }
 
-
 .btn-success {
-    color: #fff;
-    background-color: #a5be64;
-    border-color: #a5be64;
+  background-color: #a5be64;
+  border-color: #a5be64;
 }
 
 .btn-danger {
-    color: #fff;
-    background-color: #ea6360;
-    border-color: #ea6360;
+  background-color: #ea6360;
+  border-color: #ea6360;
 }
 
 .btn-warning {
-    color: #fff;
-    background-color: #db9327;
-    border-color: #db9327;
+  background-color: #db9327;
+  border-color: #db9327;
 }
