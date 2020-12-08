@@ -2,5 +2,7 @@ streamlit==0.72.0
 ./spleeter
 soundfile
 youtube-dl
-./mixs
 tensorflow-cpu==2.3.0
+ffmpeg-python
+ffprobe
+./mixs
