@@ -42,6 +42,7 @@ st.set_page_config(page_title='MixS', page_icon=None, layout='wide', initial_sid
 
 # Loading stylesheets from Github
 app_stylesheet = requests.get("https://raw.githubusercontent.com/PlexedLive/mixs_front_end/ui_improvements/styles/app.css").content.decode('utf-8')
+mixer_stylesheet = requests.get("https://raw.githubusercontent.com/PlexedLive/mixs_front_end/ui_improvements/styles/mixer.css").content.decode('utf-8')
 st.markdown(f"<style>{app_stylesheet}</style>", unsafe_allow_html=True)
 
 # Markdown texts for heading
@@ -107,58 +108,58 @@ if youtube_link != "":
             # write('./media/other.wav', rate, stems['other'])
 
         components.html(f'''
-                <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
-<link rel="stylesheet" href="http://naomiaro.github.io/waveform-playlist/css/main.css">
-<link rel="stylesheet" href="https://raw.githubusercontent.com/PlexedLive/mixs_front_end/ui_improvements/styles/mixer.css">
+<head>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="http://naomiaro.github.io/waveform-playlist/css/main.css">
+  <link rel="stylesheet" href="https://raw.githubusercontent.com/PlexedLive/mixs_front_end/ui_improvements/styles/mixer.css">
+  <style>{mixer_stylesheet}</style>
+</head>
+<body>
   <div id="top-bar" class="playlist-top-bar">
-<div class="playlist-toolbar">
-    <div class="btn-group">
-      <span class="btn-pause btn btn-warning"><i class="fa fa-pause"></i></span>
-      <span class="btn-play btn btn-success"><i class="fa fa-play"></i></span>
-      <span class="btn-stop btn btn-danger"><i class="fa fa-stop"></i></span>
-      <span class="btn-rewind btn btn-success"><i class="fa fa-fast-backward"></i></span>
-      <span class="btn-fast-forward btn btn-success"><i class="fa fa-fast-forward"></i></span>
+    <div class="playlist-toolbar">
+        <div class="btn-group">
+          <span class="btn-pause btn btn-warning"><i class="fa fa-pause"></i></span>
+          <span class="btn-play btn btn-success"><i class="fa fa-play"></i></span>
+          <span class="btn-stop btn btn-danger"><i class="fa fa-stop"></i></span>
+          <span class="btn-rewind btn btn-success"><i class="fa fa-fast-backward"></i></span>
+          <span class="btn-fast-forward btn btn-success"><i class="fa fa-fast-forward"></i></span>
+        </div>
+      <span class="audio-pos">00:00:00.0</span>
     </div>
-    <span class="audio-pos">00:00:00.0</span>
   </div>
-</div>
-<div id='playlist' data-urls='{json.dumps(stem_urls)}'> </div>
+  <div id='playlist' data-urls='{json.dumps(stem_urls)}'></div>
 
-<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-<script type="text/javascript" src="http://naomiaro.github.io/waveform-playlist/js/waveform-playlist.var.js"></script>
-<script type="text/javascript">
-  var playlist = WaveformPlaylist.init({{
-  samplesPerPixel: 10000,
-  mono: true,
-  waveHeight: 120,
-  timescale: true,
-  container: document.getElementById("playlist"),
-  state: "cursor",
-  colors: {{
-    waveOutlineColor: "#E0EFF1",
-    timeColor: "grey",
-    fadeColor: "black"
-  }},
-  controls: {{
-    show: true,
-    width: 150
-  }},
-  zoomLevels: [500, 1000, 3000, 5000, 10000]
-}});
-
-playlist
-  .load(JSON.parse(document.getElementById("playlist").dataset.urls))
-  .then(function() {{
-    // can do stuff with the playlist.
+  <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script type="text/javascript" src="http://naomiaro.github.io/waveform-playlist/js/waveform-playlist.var.js"></script>
+  <script type="text/javascript">
+    var playlist = WaveformPlaylist.init({{
+    samplesPerPixel: 10000,
+    mono: true,
+    waveHeight: 120,
+    timescale: true,
+    container: document.getElementById("playlist"),
+    state: "cursor",
+    colors: {{
+      waveOutlineColor: "#E0EFF1",
+      timeColor: "grey",
+      fadeColor: "black"
+    }},
+    controls: {{
+      show: true,
+      width: 150
+    }},
+    zoomLevels: [500, 1000, 3000, 5000, 10000]
   }});
 
-
-</script>
-<script type="text/javascript" src="http://naomiaro.github.io/waveform-playlist/js/emitter.js"></script>
-
-</script>
-
+  playlist
+    .load(JSON.parse(document.getElementById("playlist").dataset.urls))
+    .then(function() {{
+      // can do stuff with the playlist.
+    }});
+  </script>
+  <script type="text/javascript" src="http://naomiaro.github.io/waveform-playlist/js/emitter.js"></script>
+</body>
     ''', height=1000)
 
     else:
