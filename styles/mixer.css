@@ -1,0 +1,48 @@
+body {
+  background-color: black;
+  color: white;
+}
+
+.playlist .controls header {
+  background-color: #377ba2;
+  text-transform: capitalize;
+}
+
+.playlist .channel, .playlist .playlist-tracks {
+  background: unset;
+}
+
+.playlist .vocals {
+  background-color: #ea6360;
+}
+
+.playlist .piano {
+  background-color: #e37d44;
+}
+
+.playlist .drums {
+  background-color: #db9327;
+}
+
+.playlist .bass {
+  background-color: #e3b544;
+}
+
+.playlist .other {
+  background-color: #a5be64;
+}
+
+.btn-success {
+  background-color: #a5be64;
+  border-color: #a5be64;
+}
+
+.btn-danger {
+  background-color: #ea6360;
+  border-color: #ea6360;
+}
+
+.btn-warning {
+  background-color: #db9327;
+  border-color: #db9327;
+}
