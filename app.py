@@ -10,7 +10,7 @@ from mixs.split import splitter
 import streamlit.components.v1 as components
 from streamlit.media_file_manager import _calculate_file_id, STATIC_MEDIA_ENDPOINT
 
-stem_urls = []
+# stem_urls = []
 
 # def display_waveform(song, instrument):
 #     colours = {
@@ -77,6 +77,7 @@ def np_audio(np_array, stem_name, samplerate=44100):
 
 
 if youtube_link != "":
+    stem_urls = []
     link = YouTubeTools(youtube_link)
     button = st.button("Separate")
 
@@ -88,25 +89,6 @@ if youtube_link != "":
 
         for stem, audio in stems.items():
             np_audio(audio, stem, rate)
-
-        # if stems != None:
-        #     st.markdown("<h3 style='text-align: left; color: white; font-family: Monaco'>Vocals</h3>",unsafe_allow_html=True)
-        #     np_audio(stems['vocals'], rate)
-
-        #     st.markdown("<h3 style='text-align: left; color: white; font-family: Monaco'>Piano</h3>",unsafe_allow_html=True)
-        #     np_audio(stems['piano'], rate)
-
-
-        #     st.markdown("<h3 style='text-align: left; color: white; font-family: Monaco'>Drums</h3>",unsafe_allow_html=True)
-        #     # write('./media/drums.wav', rate, stems['drums'])
-
-
-        #     st.markdown("<h3 style='text-align: left; color: white; font-family: Monaco'>Bass</h3>",unsafe_allow_html=True)
-        #     # write('./media/bass.wav', rate, stems['bass'])
-
-
-        #     st.markdown("<h3 style='text-align: left; color: white; font-family: Monaco'>Other</h3>",unsafe_allow_html=True)
-            # write('./media/other.wav', rate, stems['other'])
 
         components.html(f'''
 <head>
