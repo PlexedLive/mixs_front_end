@@ -2,3 +2,8 @@ body {
   background-color: black;
   color: white;
 }
+
+.playlist .controls header {
+  background-color: #377ba2;
+  text-transform: capitalize;
+}
