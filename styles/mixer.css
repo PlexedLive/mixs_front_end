@@ -12,16 +12,15 @@ body {
   background: unset;
 }
 
-
 .playlist .vocals {
   background-color: #ea6360;
 }
 
-.playlist .drums {
+.playlist .piano {
   background-color: #e37d44;
 }
 
-.playlist .piano {
+.playlist .drums {
   background-color: #db9327;
 }
 
