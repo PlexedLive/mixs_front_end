@@ -69,7 +69,8 @@ def np_audio(np_array, stem_name, samplerate=44100):
         wav_url = f'{STATIC_MEDIA_ENDPOINT}/{file_id}.wav'
         stem_urls.append({
             'src': wav_url,
-            'name': stem_name
+            'name': stem_name,
+            'customClass': stem_name,
             })
 
 
@@ -141,9 +142,9 @@ if youtube_link != "":
     container: document.getElementById("playlist"),
     state: "cursor",
     colors: {{
-      waveOutlineColor: "#E0EFF1",
-      timeColor: "grey",
-      fadeColor: "black"
+      waveOutlineColor: "black",
+      timeColor: "white",
+      fadeColor: "red"
     }},
     controls: {{
       show: true,
