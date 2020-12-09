@@ -10,5 +10,5 @@ echo "\
 headless = true\n\
 enableCORS = false\n\
 enableXsrfProtection = false\n\
-port = process.env.PORT || 8080\n\
+port = $PORT\n\
 " > ~/.streamlit/config.toml
