@@ -19,8 +19,8 @@ spinner = '<div class="loader">Loading...</div>'
 st.set_page_config(page_title='MixS', page_icon=None, layout='wide', initial_sidebar_state='auto')
 
 # Loading stylesheets from Github
-app_stylesheet = requests.get("https://raw.githubusercontent.com/PlexedLive/mixs_front_end/master_volume/styles/app.css").content.decode('utf-8')
-mixer_stylesheet = requests.get("https://raw.githubusercontent.com/PlexedLive/mixs_front_end/master_volume/styles/mixer.css").content.decode('utf-8')
+app_stylesheet = requests.get("https://raw.githubusercontent.com/PlexedLive/mixs_front_end/main/styles/app.css").content.decode('utf-8')
+mixer_stylesheet = requests.get("https://raw.githubusercontent.com/PlexedLive/mixs_front_end/main/styles/mixer.css").content.decode('utf-8')
 st.markdown(f"<style>{app_stylesheet}</style>", unsafe_allow_html=True)
 
 # Markdown texts for heading
