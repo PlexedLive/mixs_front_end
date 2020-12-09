@@ -8,6 +8,15 @@ body {
   text-transform: capitalize;
 }
 
+.playlist .playlist-tracks {
+  border: solid 1px #555;
+}
+
+.playlist .controls {
+  border: solid 1px #555;
+  background-color: black;
+}
+
 .playlist .channel, .playlist .playlist-tracks {
   background: unset;
 }
@@ -47,17 +56,25 @@ body {
   border-color: #db9327;
 }
 
-
-input[type=range] {
-  width: 100%;
+input[type=range], .playlist .controls input[type=range] {
+  width: 85%;
   margin: 13.8px 0;
   background-color: transparent;
   -webkit-appearance: none;
 }
-input[type=range]:focus {
+
+.master-gain {
+  width: 100% !important;
+}
+
+.playlist .controls label:before, .playlist .controls label:after {
+  display: none;
+}
+
+input[type=range]:focus, .playlist .controls input[type=range]:focus {
   outline: none;
 }
-input[type=range]::-webkit-slider-runnable-track {
+input[type=range]::-webkit-slider-runnable-track, .playlist .controls input[type=range]::-webkit-slider-runnable-track {
   background: #377ba2;
   border: 0.2px solid #010101;
   border-radius: 1.3px;
@@ -65,7 +82,7 @@ input[type=range]::-webkit-slider-runnable-track {
   height: 8.4px;
   cursor: pointer;
 }
-input[type=range]::-webkit-slider-thumb {
+input[type=range]::-webkit-slider-thumb, .playlist .controls input[type=range]::-webkit-slider-thumb {
   margin-top: -14px;
   width: 16px;
   height: 36px;
@@ -75,10 +92,10 @@ input[type=range]::-webkit-slider-thumb {
   cursor: pointer;
   -webkit-appearance: none;
 }
-input[type=range]:focus::-webkit-slider-runnable-track {
+input[type=range]:focus::-webkit-slider-runnable-track, .playlist .controls input[type=range]:focus::-webkit-slider-runnable-track {
   background: #377ba2;
 }
-input[type=range]::-moz-range-track {
+input[type=range]::-moz-range-track, .playlist .controls input[type=range]::-moz-range-track {
   background: #377ba2;
   border: 0.2px solid #010101;
   border-radius: 1.3px;
@@ -86,7 +103,7 @@ input[type=range]::-moz-range-track {
   height: 8.4px;
   cursor: pointer;
 }
-input[type=range]::-moz-range-thumb {
+input[type=range]::-moz-range-thumb, .playlist .controls input[type=range]::-moz-range-thumb {
   width: 16px;
   height: 36px;
   background: #a5be64;
@@ -94,7 +111,7 @@ input[type=range]::-moz-range-thumb {
   border-radius: 3px;
   cursor: pointer;
 }
-input[type=range]::-ms-track {
+input[type=range]::-ms-track, .playlist .controls input[type=range]::-ms-track {
   background: transparent;
   border-color: transparent;
   border-width: 14.8px 0;
@@ -103,17 +120,17 @@ input[type=range]::-ms-track {
   height: 8.4px;
   cursor: pointer;
 }
-input[type=range]::-ms-fill-lower {
+input[type=range]::-ms-fill-lower, .playlist .controls input[type=range]::-ms-fill-lower {
   background: #377ba2;
   border: 0.2px solid #010101;
   border-radius: 2.6px;
 }
-input[type=range]::-ms-fill-upper {
+input[type=range]::-ms-fill-upper, .playlist .controls input[type=range]::-ms-fill-upper {
   background: #222222;
   border: 0.2px solid #010101;
   border-radius: 2.6px;
 }
-input[type=range]::-ms-thumb {
+input[type=range]::-ms-thumb, .playlist .controls input[type=range]::-ms-thumb {
   width: 16px;
   height: 36px;
   background: #a5be64;
@@ -123,24 +140,30 @@ input[type=range]::-ms-thumb {
   margin-top: 0px;
   /*Needed to keep the Edge thumb centred*/
 }
-input[type=range]:focus::-ms-fill-lower {
+input[type=range]:focus::-ms-fill-lower, .playlist .controls input[type=range]:focus::-ms-fill-lower {
   background: #377ba2;
 }
-input[type=range]:focus::-ms-fill-upper {
+input[type=range]:focus::-ms-fill-upper, .playlist .controls input[type=range]:focus::-ms-fill-upper {
   background: #222222;
 }
 /*TODO: Use one of the selectors from https://stackoverflow.com/a/20541859/7077589 and figure out
 how to remove the virtical space around the range input in IE*/
 @supports (-ms-ime-align:auto) {
   /* Pre-Chromium Edge only styles, selector taken from hhttps://stackoverflow.com/a/32202953/7077589 */
-  input[type=range] {
+  input[type=range], .playlist .controls input[type=range] {
     margin: 0;
     /*Edge starts the margin from the thumb, not the track as other browsers do*/
   }
 }
 
 
+.btn-default.btn-mute, .btn-default.btn-solo {
+  color: white;
+  background-color: #7c8f4c;
+}
 
-
-
+.btn-default.btn-mute.active, .btn-default.btn-solo.active {
+  color: white;
+  background-color: #a5be64;
+}
 
