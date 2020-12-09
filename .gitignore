@@ -14,6 +14,8 @@ groupama/data/base_pno.*
 /raw_data/
 *.wav
 /notebooks/
+*.jpg
+*.png
 
 
 # Byte-compiled / optimized / DLL files
