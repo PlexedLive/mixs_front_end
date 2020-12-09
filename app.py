@@ -19,11 +19,76 @@ q = Queue(connection=conn)
 # Change background image
 # def app():
 
+spinner = '''
+<style>
+.loader,
+.loader:before,
+.loader:after {
+  background: #ffffff;
+  -webkit-animation: load1 1s infinite ease-in-out;
+  animation: load1 1s infinite ease-in-out;
+  width: 1em;
+  height: 4em;
+}
+.loader {
+  color: #ffffff;
+  text-indent: -9999em;
+  margin: 88px auto;
+  position: relative;
+  font-size: 11px;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+.loader:before,
+.loader:after {
+  position: absolute;
+  top: 0;
+  content: '';
+}
+.loader:before {
+  left: -1.5em;
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+.loader:after {
+  left: 1.5em;
+}
+@-webkit-keyframes load1 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 0;
+    height: 4em;
+  }
+  40% {
+    box-shadow: 0 -2em;
+    height: 5em;
+  }
+}
+@keyframes load1 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 0;
+    height: 4em;
+  }
+  40% {
+    box-shadow: 0 -2em;
+    height: 5em;
+  }
+}
+</style>
+<div class="loader">Loading...</div>
+'''
+
 st.set_page_config(page_title='MixS', page_icon=None, layout='wide', initial_sidebar_state='auto')
 
 # Loading stylesheets from Github
-app_stylesheet = requests.get("https://raw.githubusercontent.com/PlexedLive/mixs_front_end/ui_improvements/styles/app.css").content.decode('utf-8')
-mixer_stylesheet = requests.get("https://raw.githubusercontent.com/PlexedLive/mixs_front_end/ui_improvements/styles/mixer.css").content.decode('utf-8')
+app_stylesheet = requests.get("https://raw.githubusercontent.com/PlexedLive/mixs_front_end/main/styles/app.css").content.decode('utf-8')
+mixer_stylesheet = requests.get("https://raw.githubusercontent.com/PlexedLive/mixs_front_end/main/styles/mixer.css").content.decode('utf-8')
 st.markdown(f"<style>{app_stylesheet}</style>", unsafe_allow_html=True)
 
 # Markdown texts for heading
@@ -64,11 +129,14 @@ if youtube_link != "":
     logging.info('loading link')
 
     if button:
+        spinner = st.markdown(spinner, unsafe_allow_html=True)
         link.clear_wavs()
         filename = link.get_audio_and_directory()
         stems, rate = q.enqueue(splitter, filename)
         rate = int(rate)
         logging.info('splitting song')
+        spinner.write("")
+
 
         for stem, audio in stems.items():
             np_audio(audio, stem, rate)
