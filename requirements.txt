@@ -1,7 +1,7 @@
 streamlit==0.72.0
 ./spleeter
 soundfile
-youtube-dl --force-ipv4
+youtube-dl
 tensorflow-cpu==2.3.0
 git+https://github.com/Rapptz/discord.py
 ffmpeg

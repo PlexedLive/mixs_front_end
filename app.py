@@ -132,6 +132,6 @@ if youtube_link != "":
         logging.info('displaying video')
 else:
   st.image("guitar.jpg", width=1000)
-  loggin.info('displaying guitar')
+  logging.info('displaying guitar')
 
 
