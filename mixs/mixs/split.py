@@ -15,7 +15,7 @@ def splitter(path):
     waveform, rate = audio_loader.load(path, sample_rate=None)
     prediction = separator.separate(waveform)
     # tools.clear_wavs()
-    return prediction
+    return prediction, rate
 
 
 if __name__ == "__main__":

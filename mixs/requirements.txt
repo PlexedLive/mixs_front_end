@@ -1,2 +1,1 @@
-./spleeter
 youtube_dl
