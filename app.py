@@ -9,8 +9,10 @@ from mixs.split import splitter
 import streamlit.components.v1 as components
 from streamlit.media_file_manager import _calculate_file_id, STATIC_MEDIA_ENDPOINT
 import logging
-# from rq import Queue
-# from worker import conn
+from rq import Queue
+from worker import conn
+
+q = Queue(connection=conn)
 
 # stem_urls = []
 
@@ -64,7 +66,7 @@ if youtube_link != "":
     if button:
         link.clear_wavs()
         filename = link.get_audio_and_directory()
-        stems, rate = splitter(filename)
+        stems, rate = q.enqueue(splitter, filename)
         rate = int(rate)
         logging.info('splitting song')
 
