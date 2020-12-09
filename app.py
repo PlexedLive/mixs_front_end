@@ -19,70 +19,7 @@ q = Queue(connection=conn)
 # Change background image
 # def app():
 
-spinner = '''
-<style>
-.loader,
-.loader:before,
-.loader:after {
-  background: #ffffff;
-  -webkit-animation: load1 1s infinite ease-in-out;
-  animation: load1 1s infinite ease-in-out;
-  width: 1em;
-  height: 4em;
-}
-.loader {
-  color: #ffffff;
-  text-indent: -9999em;
-  margin: 88px auto;
-  position: relative;
-  font-size: 11px;
-  -webkit-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  transform: translateZ(0);
-  -webkit-animation-delay: -0.16s;
-  animation-delay: -0.16s;
-}
-.loader:before,
-.loader:after {
-  position: absolute;
-  top: 0;
-  content: '';
-}
-.loader:before {
-  left: -1.5em;
-  -webkit-animation-delay: -0.32s;
-  animation-delay: -0.32s;
-}
-.loader:after {
-  left: 1.5em;
-}
-@-webkit-keyframes load1 {
-  0%,
-  80%,
-  100% {
-    box-shadow: 0 0;
-    height: 4em;
-  }
-  40% {
-    box-shadow: 0 -2em;
-    height: 5em;
-  }
-}
-@keyframes load1 {
-  0%,
-  80%,
-  100% {
-    box-shadow: 0 0;
-    height: 4em;
-  }
-  40% {
-    box-shadow: 0 -2em;
-    height: 5em;
-  }
-}
-</style>
-<div class="loader">Loading...</div>
-'''
+spinner = '<div class="loader">Loading...</div>'
 
 st.set_page_config(page_title='MixS', page_icon=None, layout='wide', initial_sidebar_state='auto')
 
@@ -149,6 +86,7 @@ if youtube_link != "":
   <link rel="stylesheet" href="http://naomiaro.github.io/waveform-playlist/css/main.css">
   <link rel="stylesheet" href="https://raw.githubusercontent.com/PlexedLive/mixs_front_end/ui_improvements/styles/mixer.css">
   <style>{mixer_stylesheet}</style>
+
 </head>
 <body>
   <div id="top-bar" class="playlist-top-bar">
@@ -163,7 +101,9 @@ if youtube_link != "":
       <span class="audio-pos">00:00:00.0</span>
     </div>
   </div>
-  <div id='playlist' data-urls='{json.dumps(stem_urls)}'></div>
+  <div id='playlist' data-urls='{json.dumps(stem_urls)}'>
+    <input type="range" class="master-gain" min=0 max=100 value=100>
+  </div>
 
   <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
   <script type="text/javascript" src="http://naomiaro.github.io/waveform-playlist/js/waveform-playlist.var.js"></script>
