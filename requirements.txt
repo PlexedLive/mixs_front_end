@@ -3,6 +3,5 @@ streamlit==0.72.0
 soundfile
 youtube-dl
 tensorflow-cpu==2.3.0
-ffmpeg-python
 ffprobe
 ./mixs
