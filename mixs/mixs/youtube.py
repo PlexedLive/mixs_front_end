@@ -9,7 +9,14 @@ EMBED_BASE = "https://www.youtube.com/embed/%s?rel=0&amp;controls=0&amp;showinfo
 class YouTubeTools():
 
     def __init__(self, full_url='https://www.youtube.com/watch?v=yPYZpwSpKmA'):
-        self.url = full_url.split("watch?v=", 1)[1]
+        if "watch?v=" in full_url:
+            self.url = full_url.split("watch?v=", 1)[1]
+        elif "?t=" in full_url:
+            self.url = (full_url.split("?t=", 1)[0]).split("/")[-1]
+        elif "?list=" in full_url:
+            self.url = full_url.split("?list=", 1)[0].split("/")[-1]
+        else:
+            self.url = full_url.split("/", 1)[-1].split("/")[-1]
 
     # def get_embed(self):
     #     '''

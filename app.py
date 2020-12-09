@@ -8,17 +8,24 @@ from mixs.youtube import YouTubeTools
 from mixs.split import splitter
 import streamlit.components.v1 as components
 from streamlit.media_file_manager import _calculate_file_id, STATIC_MEDIA_ENDPOINT
+import logging
+from rq import Queue
+from worker import conn
+
+q = Queue(connection=conn)
 
 # stem_urls = []
 
 # Change background image
 # def app():
 
+spinner = '<div class="loader">Loading...</div>'
+
 st.set_page_config(page_title='MixS', page_icon=None, layout='wide', initial_sidebar_state='auto')
 
 # Loading stylesheets from Github
-app_stylesheet = requests.get("https://raw.githubusercontent.com/PlexedLive/mixs_front_end/ui_improvements/styles/app.css").content.decode('utf-8')
-mixer_stylesheet = requests.get("https://raw.githubusercontent.com/PlexedLive/mixs_front_end/ui_improvements/styles/mixer.css").content.decode('utf-8')
+app_stylesheet = requests.get("https://raw.githubusercontent.com/PlexedLive/mixs_front_end/main/styles/app.css").content.decode('utf-8')
+mixer_stylesheet = requests.get("https://raw.githubusercontent.com/PlexedLive/mixs_front_end/main/styles/mixer.css").content.decode('utf-8')
 st.markdown(f"<style>{app_stylesheet}</style>", unsafe_allow_html=True)
 
 # Markdown texts for heading
@@ -49,30 +56,34 @@ def np_audio(np_array, stem_name, samplerate=44100):
             'customClass': stem_name,
             })
 
-
-
-
 if youtube_link != "":
     stem_urls = []
     link = YouTubeTools(youtube_link)
     button = st.button("Separate")
+    logging.info('loading link')
 
     if button:
+        spinner = st.markdown(spinner, unsafe_allow_html=True)
         link.clear_wavs()
         filename = link.get_audio_and_directory()
-        stems, rate = splitter(filename)
+        stems, rate = q.enqueue(splitter, filename)
         rate = int(rate)
+        logging.info('splitting song')
+        spinner.write("")
+
 
         for stem, audio in stems.items():
             np_audio(audio, stem, rate)
+            logging.info('displaying stems')
 
         components.html(f'''
 <head>
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
   <link rel="stylesheet" href="http://naomiaro.github.io/waveform-playlist/css/main.css">
-  <link rel="stylesheet" href="https://raw.githubusercontent.com/PlexedLive/mixs_front_end/ui_improvements/styles/mixer.css">
+  <link rel="stylesheet" href="https://raw.githubusercontent.com/PlexedLive/mixs_front_end/main/styles/mixer.css">
   <style>{mixer_stylesheet}</style>
+
 </head>
 <body>
   <div id="top-bar" class="playlist-top-bar">
@@ -87,7 +98,9 @@ if youtube_link != "":
       <span class="audio-pos">00:00:00.0</span>
     </div>
   </div>
-  <div id='playlist' data-urls='{json.dumps(stem_urls)}'></div>
+  <div id='playlist' data-urls='{json.dumps(stem_urls)}'>
+    <input type="range" class="master-gain" min=0 max=100 value=100>
+  </div>
 
   <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
   <script type="text/javascript" src="http://naomiaro.github.io/waveform-playlist/js/waveform-playlist.var.js"></script>
@@ -123,7 +136,9 @@ if youtube_link != "":
 
     else:
         youtube_display(youtube_link)
+        logging.info('displaying video')
 else:
   st.image("guitar.jpg", width=1000)
+  logging.info('displaying guitar')
 
 
