@@ -31,14 +31,16 @@ st.markdown(read_local_asset('styles/app.css'), unsafe_allow_html=True)
 
 # Markdown texts for heading
 col1, col2 = st.beta_columns(2)
-col1.image("logo_transparent.png", width=260)
-col2.markdown("## Practice like a Pro!")
+col2.image("logo_transparent.png", width=260)
+# col2.markdown("## Practice like a Pro!")
 
 # st.markdown("<h2 style='text-align: center; color: white; font-family: Verdana'>Get high quality backing tracks!</h2>",unsafe_allow_html=True)
 # Fetching YouTube link from the end-user
 col3, col4 = st.beta_columns([10,1])
 
-youtube_link = st.text_input("Enter the YouTube link of the track to be separated")
+st.markdown("## Practice like a pro: Extract vocals and instruments from your favorite songs!")
+
+youtube_link = st.text_input("", "Enter YouTube URL")
 
 
 # Fetching the song from YouTube
@@ -57,7 +59,7 @@ def np_audio(np_array, stem_name, samplerate=44100):
             'customClass': stem_name,
             })
 
-if youtube_link != "":
+if youtube_link != "Enter YouTube URL":
     stem_urls = []
     link = YouTubeTools(youtube_link)
     button = st.button("Separate")
@@ -106,7 +108,7 @@ if youtube_link != "":
   {read_local_asset('scripts/waveform-playlist.var.js', type='script')}
   <script type="text/javascript">
     var playlist = WaveformPlaylist.init({{
-    samplesPerPixel: 10000,
+    samplesPerPixel: 3000,
     mono: true,
     waveHeight: 120,
     timescale: true,
