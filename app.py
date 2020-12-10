@@ -16,6 +16,10 @@ import logging
 # Change background image
 # def app():
 
+def read_local_asset(file_name, type='style'):
+    with open(file_name) as f:
+        return f'<{type}>{f.read()}</{type}>'
+
 spinner = '<div class="loader">Loading...</div>'
 
 st.set_page_config(page_title='MixS', page_icon=None, layout='wide', initial_sidebar_state='auto')
@@ -23,7 +27,7 @@ st.set_page_config(page_title='MixS', page_icon=None, layout='wide', initial_sid
 # Loading stylesheets from Github
 app_stylesheet = requests.get("https://raw.githubusercontent.com/PlexedLive/mixs_front_end/main/styles/app.css").content.decode('utf-8')
 mixer_stylesheet = requests.get("https://raw.githubusercontent.com/PlexedLive/mixs_front_end/main/styles/mixer.css").content.decode('utf-8')
-st.markdown(f"<style>{app_stylesheet}</style>", unsafe_allow_html=True)
+st.markdown(read_local_asset('styles/app.css'), unsafe_allow_html=True)
 
 # Markdown texts for heading
 col1, col2 = st.beta_columns(2)
@@ -77,9 +81,8 @@ if youtube_link != "":
 <head>
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="http://naomiaro.github.io/waveform-playlist/css/main.css">
-  <link rel="stylesheet" href="https://raw.githubusercontent.com/PlexedLive/mixs_front_end/main/styles/mixer.css">
-  <style>{mixer_stylesheet}</style>
+  {read_local_asset('styles/waveform.css')}
+  {read_local_asset('styles/mixer.css')}
 
 </head>
 <body>
@@ -100,7 +103,7 @@ if youtube_link != "":
   </div>
 
   <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-  <script type="text/javascript" src="http://naomiaro.github.io/waveform-playlist/js/waveform-playlist.var.js"></script>
+  {read_local_asset('scripts/waveform-playlist.var.js', type='script')}
   <script type="text/javascript">
     var playlist = WaveformPlaylist.init({{
     samplesPerPixel: 10000,
@@ -127,7 +130,7 @@ if youtube_link != "":
       // can do stuff with the playlist.
     }});
   </script>
-  <script type="text/javascript" src="http://naomiaro.github.io/waveform-playlist/js/emitter.js"></script>
+  {read_local_asset('scripts/emitter.js', type='script')}
 </body>
     ''', height=1000)
 
