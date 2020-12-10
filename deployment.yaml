@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: streamlitweb
+ name: mixs-streamlit-front
  labels:
-   app: streamlit
+   app: mixs-streamlit
 spec:
  selector:
    matchLabels:
-     app: streamlit
+     app: mixs-streamlit
      tier: web
  template:
    metadata:
      labels:
-       app: streamlit
+       app: mixs-streamlit
        tier: web
    spec:
      containers:
-     - name: streamlit-app
+     - name: mixs-streamlit-backend
        image: gcr.io/mixs-298100/app
        ports:
        - containerPort: 8501

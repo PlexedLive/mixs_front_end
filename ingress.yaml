@@ -2,8 +2,6 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
  name: streamlitweb
- annotations:
-   kubernetes.io/ingress.global-static-ip-name: mixs-streamlit
  labels:
    app: streamlit
 spec:
