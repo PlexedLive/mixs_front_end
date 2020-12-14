@@ -83,10 +83,10 @@ def np_audio(stem_name, np_array=None, samplerate=44100, audio_path=None):
 
 stems = {
 'vocals': 'Samples/Vocals.wav',
-'piano': 'Samples/Vocals.wav',
-'drums': 'Samples/Vocals.wav',
-'bass': 'Samples/Vocals.wav',
-'other': 'Samples/Vocals.wav'
+'piano': 'Samples/Piano.wav',
+'drums': 'Samples/Drums.wav',
+'bass': 'Samples/Bass.wav',
+'other': 'Samples/Other.wav'
 }
 
 for stem, audio_path in stems.items():
