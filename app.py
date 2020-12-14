@@ -10,7 +10,6 @@ import streamlit.components.v1 as components
 from streamlit.media_file_manager import _calculate_file_id, STATIC_MEDIA_ENDPOINT
 import logging
 
-
 # stem_urls = []
 
 # Change background image
@@ -40,17 +39,25 @@ col3, col4 = st.beta_columns([10,1])
 
 st.markdown("## Practice like a pro: Extract vocals and instruments from your favorite songs!")
 
-youtube_link = st.text_input("", "Enter YouTube URL")
+# youtube_link = st.text_input("", "Enter YouTube URL")
 
 
 # Fetching the song from YouTube
 def youtube_display(url):
     return st.video(url)
 
-def np_audio(np_array, stem_name, samplerate=44100):
-    soundfile.write('temp.wav', np_array, samplerate, 'PCM_24')
-    st.audio('temp.wav', format='audio/wav')
-    with open("temp.wav", "rb") as f:
+
+youtube_display('https://www.youtube.com/watch?v=CdvITn5cAVc')
+
+stem_urls = []
+
+def np_audio(stem_name, np_array=None, samplerate=44100, audio_path=None):
+    if audio_path == None:
+        audio_path = 'temp.wav'
+        soundfile.write(audio_path, np_array, samplerate, 'PCM_24')
+
+    st.audio(audio_path, format='audio/wav')
+    with open(audio_path, "rb") as f:
         file_id = _calculate_file_id(f.read(), "audio/wav")
         wav_url = f'{STATIC_MEDIA_ENDPOINT}/{file_id}.wav'
         stem_urls.append({
@@ -59,27 +66,34 @@ def np_audio(np_array, stem_name, samplerate=44100):
             'customClass': stem_name,
             })
 
-if youtube_link != "Enter YouTube URL":
-    stem_urls = []
-    link = YouTubeTools(youtube_link)
-    button = st.button("Separate")
-    logging.info('loading link')
+# if youtube_link != "Enter YouTube URL":
+#     stem_urls = []
+#     link = YouTubeTools(youtube_link)
+#     button = st.button("Separate")
+#     logging.info('loading link')
 
-    if button:
-        spinner = st.markdown(spinner, unsafe_allow_html=True)
-        link.clear_wavs()
-        filename = link.get_audio_and_directory()
-        stems, rate = splitter(filename)
-        rate = int(rate)
-        logging.info('splitting song')
-        spinner.write("")
+#     if button:
+#         spinner = st.markdown(spinner, unsafe_allow_html=True)
+#         link.clear_wavs()
+#         filename = link.get_audio_and_directory()
+#         stems, rate = splitter(filename)
+#         rate = int(rate)
+#         logging.info('splitting song')
+#         spinner.write("")
 
+stems = {
+'vocals': 'Samples/Vocals.wav',
+'piano': 'Samples/Vocals.wav',
+'drums': 'Samples/Vocals.wav',
+'bass': 'Samples/Vocals.wav',
+'other': 'Samples/Vocals.wav'
+}
 
-        for stem, audio in stems.items():
-            np_audio(audio, stem, rate)
-            logging.info('displaying stems')
+for stem, audio_path in stems.items():
+    np_audio(stem, audio_path=audio_path)
+    logging.info('displaying stems')
 
-        components.html(f'''
+components.html(f'''
 <head>
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
@@ -136,11 +150,11 @@ if youtube_link != "Enter YouTube URL":
 </body>
     ''', height=1000)
 
-    else:
-        youtube_display(youtube_link)
-        logging.info('displaying video')
-else:
-  st.image("guitar.jpg", width=1000)
-  logging.info('displaying guitar')
+#     else:
+#         youtube_display(youtube_link)
+#         logging.info('displaying video')
+# else:
+#   st.image("guitar.jpg", width=1000)
+#   logging.info('displaying guitar')
 
 
