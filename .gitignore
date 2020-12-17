@@ -16,6 +16,11 @@ groupama/data/base_pno.*
 /notebooks/
 *.jpg
 *.png
+!Bass.wav
+!Drums.wav
+!Other.wav
+!Piano.wav
+!Vocals.wav
 
 
 # Byte-compiled / optimized / DLL files
